@@ -54,8 +54,31 @@ void test()
 	return;
 }
 
+void test2()
+{
+	Grammer * g = (Grammer *)malloc(sizeof(Grammer));
+	g->N = "S";
+	g->numN = 1;
+	g->T = "ab";
+	g->numT = 2;
+	g->delta = (Node **)malloc(sizeof(Node *));
+	g->delta[0] = (Node *)malloc(sizeof(Node));
+	Node *tmp = g->delta[0];
+	tmp->str = "aSbS";
+	tmp->next = (Node *)malloc(sizeof(Node));
+	tmp = tmp->next;
+	tmp->str = "bSaS";
+	tmp->next = (Node *)malloc(sizeof(Node));
+	tmp = tmp->next;
+	tmp->str = "&";
+	tmp->next = NULL;
+	Grammer * new = removeE(g);
+	Node * n1 = new->delta[1];
+	return;
+}
+
 int main()
 {
-	test();
+	test2();
 	return 0;
 }

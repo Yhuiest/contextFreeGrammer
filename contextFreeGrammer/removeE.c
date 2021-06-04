@@ -89,5 +89,54 @@ Grammer * removeE(Grammer * g)
 		}
 		newG->delta[i] = forNext->next;
 	}
+	Node *tmp = newG->delta[0];
+	while (tmp)
+	{
+		if (memcmp(tmp->str, "&", 1) == 0)
+		{
+			newG->numN += 1;
+			char * newN = (char *)malloc((newG->numN + 1) * sizeof(char));
+			newN[0] = 'S';
+			memcpy(&(newN[1]), newG->N, newG->numN);
+			free(newG->N);
+			newG->N = newN;
+			Node ** newDelta = (char *)malloc((newG->numN) * sizeof(Node *));
+			newDelta[0] = (Node *)malloc(sizeof(Node));
+			newDelta[0]->str = strdup("S");
+			newDelta[0]->next = (Node *)malloc(sizeof(Node));
+			newDelta[0]->next->str = strdup("&");
+			newDelta[0]->next->next = NULL;
+			memcpy(&(newDelta[1]), newG->delta, (newG->numN - 1) * sizeof(Node *));
+			free(newG->delta);
+			newG->delta = newDelta;
+			break;
+		}
+		tmp = tmp->next;
+	}
+	for (int i = 1; i < newG->numN; i++)
+	{
+		Node *tmp = newG->delta[i];
+		if (memcmp(tmp->str, "&", 1) == 0)
+		{
+			newG->delta[i] = tmp->next;
+			free(tmp->str);
+			free(tmp);
+		}
+		else
+		{
+			while (tmp->next)
+			{
+				Node * nextNode = tmp->next;
+				if (memcmp(nextNode->str, "&", 1) == 0)
+				{
+					tmp->next = nextNode->next;
+					free(nextNode->str);
+					free(nextNode);
+					break;
+				}
+				tmp = tmp->next;
+			}
+		}
+	}
 	return newG;
 }
