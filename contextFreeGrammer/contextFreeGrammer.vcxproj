@@ -151,11 +151,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="contextFreeGrammer.cpp" />
-    <ClCompile Include="removeE.cpp" />
+    <ClCompile Include="contextFreeGrammer.c" />
+    <ClCompile Include="removeE.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="contextFreeGrammer.h" />
+    <ClInclude Include="removeE.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

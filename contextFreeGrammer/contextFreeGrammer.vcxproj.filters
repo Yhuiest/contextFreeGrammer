@@ -15,15 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="contextFreeGrammer.cpp">
+    <ClCompile Include="removeE.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="removeE.cpp">
+    <ClCompile Include="contextFreeGrammer.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="contextFreeGrammer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="removeE.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

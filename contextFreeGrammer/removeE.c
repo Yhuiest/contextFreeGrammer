@@ -16,7 +16,7 @@ int findInN(const char *N, char c)
 	return -1;
 }
 
-Node * newGeneration(Node *lastestNode, const char *str, const bool *generateE, int loc, const char *N)
+Node * newGeneration(Node *lastestNode, char *str, bool *generateE, int loc, char *N)
 {
 	int len = strlen(str);
 	int i;
@@ -28,7 +28,7 @@ Node * newGeneration(Node *lastestNode, const char *str, const bool *generateE, 
 			break;
 		}
 	}
-	if (i == len)
+	if (i >= len)
 	{
 		lastestNode->next = (Node *)malloc(sizeof(Node));
 		Node * tmp = lastestNode->next;
@@ -40,28 +40,18 @@ Node * newGeneration(Node *lastestNode, const char *str, const bool *generateE, 
 	else
 	{
 		Node *newestNode = newGeneration(lastestNode, str, generateE, i + 1, N);
-		newestNode->next = (Node *)malloc(sizeof(Node));
-		newestNode = newestNode->next;
-		newestNode->str = (char *)malloc((len + 1) * sizeof(char));
-		newestNode->next = NULL;
-		memcpy(newestNode->str, str, len + 1);
-
 		char *str2 = strdup(str);
-		for (int j = i++; j < len; j++)
+		int k = i;
+		for (int j = k++; j < len; j++, k++)
 		{
-			str2[j] = str[i];
+			str2[j] = str[k];
 		}
-		newestNode = newGeneration(newestNode, str2, generateE, loc + 1, N);
-		newestNode->next = (Node *)malloc(sizeof(Node));
-		newestNode = newestNode->next;
-		newestNode->str = (char *)malloc((len) * sizeof(char));
-		newestNode->next = NULL;
-		memcpy(newestNode->str, str2, len);
+		newestNode = newGeneration(newestNode, str2, generateE, i, N);
 		return newestNode;
 	}
 }
 
-void removeE(Grammer * g)
+Grammer * removeE(Grammer * g)
 {
 	bool *generateE = (bool *)malloc(sizeof(bool) * g->numN);
 	for (int i = 0; i < g->numN; i++)
@@ -78,7 +68,12 @@ void removeE(Grammer * g)
 		}
 	}
 	Grammer *newG = (Grammer *)malloc(sizeof(Grammer));
-
+	newG->numN = g->numN;
+	newG->numT = g->numT;
+	newG->N = (char *)malloc(sizeof(char) * (newG->numN + 1));
+	newG->T = (char *)malloc(sizeof(char) * (newG->numT + 1));
+	memcpy(newG->N, g->N, g->numN + 1);
+	memcpy(newG->T, g->T, g->numT + 1);
 	for (int i = 0; i < g->numN; i++)
 	{
 		Node *tmp = g->delta[i];
@@ -89,5 +84,7 @@ void removeE(Grammer * g)
 			newNode->next = NULL;
 			newNode = newGeneration(newNode, tmp->str, generateE, 0, g->N);
 		}
+		newG->delta[i] = forNext->next;
 	}
+	return newG;
 }
