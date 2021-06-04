@@ -54,12 +54,13 @@ Node * newGeneration(Node *lastestNode, char *str, bool *generateE, int loc, cha
 Grammer * removeE(Grammer * g)
 {
 	bool *generateE = (bool *)malloc(sizeof(bool) * g->numN);
+	memset(generateE, 0, g->numN);
 	for (int i = 0; i < g->numN; i++)
 	{
 		Node *tmp = g->delta[i];
 		while (tmp)
 		{
-			if ((*tmp).str[0] == '&')
+			if ((*tmp).str[0] == EPSILON)
 			{
 				generateE[i] = true;
 				break;
@@ -74,6 +75,7 @@ Grammer * removeE(Grammer * g)
 	newG->T = (char *)malloc(sizeof(char) * (newG->numT + 1));
 	memcpy(newG->N, g->N, g->numN + 1);
 	memcpy(newG->T, g->T, g->numT + 1);
+	newG->delta = (Node **)malloc(newG->numN * sizeof(Node *));
 	for (int i = 0; i < g->numN; i++)
 	{
 		Node *tmp = g->delta[i];
@@ -83,6 +85,7 @@ Grammer * removeE(Grammer * g)
 		{
 			newNode->next = NULL;
 			newNode = newGeneration(newNode, tmp->str, generateE, 0, g->N);
+			tmp = tmp->next;
 		}
 		newG->delta[i] = forNext->next;
 	}
