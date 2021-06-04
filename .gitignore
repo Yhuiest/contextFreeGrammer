@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+.vs/contextFreeGrammer/v15/.suo
+.vs/contextFreeGrammer/v15/Browse.VC.db
+.vs/contextFreeGrammer/v15/Browse.VC.opendb
+.vs/contextFreeGrammer/v15/ipch/AutoPCH/27e6fd75011e3a13/REMOVEE.ipch
+.vs/contextFreeGrammer/v15/ipch/AutoPCH/4538a5e6e0f05a38/CONTEXTFREEGRAMMER.ipch
