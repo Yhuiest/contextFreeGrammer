@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1500
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "contextFreeGrammer", "contextFreeGrammer\contextFreeGrammer.vcxproj", "{609C50B0-0957-46A1-B561-C77724A6B405}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{609C50B0-0957-46A1-B561-C77724A6B405}.Debug|x64.ActiveCfg = Debug|x64
+		{609C50B0-0957-46A1-B561-C77724A6B405}.Debug|x64.Build.0 = Debug|x64
+		{609C50B0-0957-46A1-B561-C77724A6B405}.Debug|x86.ActiveCfg = Debug|Win32
+		{609C50B0-0957-46A1-B561-C77724A6B405}.Debug|x86.Build.0 = Debug|Win32
+		{609C50B0-0957-46A1-B561-C77724A6B405}.Release|x64.ActiveCfg = Release|x64
+		{609C50B0-0957-46A1-B561-C77724A6B405}.Release|x64.Build.0 = Release|x64
+		{609C50B0-0957-46A1-B561-C77724A6B405}.Release|x86.ActiveCfg = Release|Win32
+		{609C50B0-0957-46A1-B561-C77724A6B405}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43860E3E-86BD-4CD6-90CC-977FBC7EDAE9}
+	EndGlobalSection
+EndGlobal
