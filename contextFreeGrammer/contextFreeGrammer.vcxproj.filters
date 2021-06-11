@@ -21,12 +21,18 @@
     <ClCompile Include="contextFreeGrammer.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="rmiSingelGenerate.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="contextFreeGrammer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="removeE.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rmSingelGenerate.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

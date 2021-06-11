@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "contextFreeGrammer.h"
 #include "removeE.h"
+#include "rmSingelGenerate.h"
 
 void test()
 {
@@ -77,8 +78,41 @@ void test2()
 	return;
 }
 
+void test3()
+{
+	Grammer * g = (Grammer *)malloc(sizeof(Grammer));
+	g->N = "SAB";
+	g->numN = 3;
+	g->T = "()+*a";
+	g->numT = 5;
+	g->delta = (Node **)malloc(g->numN * sizeof(Node *));
+	g->delta[0] = (Node *)malloc(sizeof(Node));
+	Node * tmp = g->delta[0];
+	tmp->str = "S+A";
+	tmp->next = (Node *)malloc(sizeof(Node));
+	tmp = tmp->next;
+	tmp->str = "A";
+	tmp->next = NULL;
+	g->delta[1] = (Node *)malloc(sizeof(Node));
+	tmp = g->delta[1];
+	tmp->str = "A*B";
+	tmp->next = (Node *)malloc(sizeof(Node));
+	tmp = tmp->next;
+	tmp->str = "B";
+	tmp->next = NULL;
+	g->delta[2] = (Node *)malloc(sizeof(Node));
+	tmp = g->delta[2];
+	tmp->str = "(S)";
+	tmp->next = (Node *)malloc(sizeof(Node));
+	tmp = tmp->next;
+	tmp->str = "a";
+	tmp->next = NULL;
+	Node * n1 = g->delta[1];
+	Node * n2 = g->delta[2];
+	rmSingelGenerate(g);
+}
 int main()
 {
-	test2();
+	test3();
 	return 0;
 }

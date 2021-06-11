@@ -1,4 +1,6 @@
 #pragma once
+#include <stdbool.h>
+#include <stdlib.h>
 
 //д╛хо
 #define START 'S'
@@ -18,3 +20,5 @@ typedef struct grammer
 	int numT;
 	Node **delta;
 }Grammer;
+
+int findInN(const char *N, char c);
