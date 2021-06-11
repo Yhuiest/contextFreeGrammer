@@ -24,6 +24,12 @@
     <ClCompile Include="rmiSingelGenerate.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Del_useless.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="contextFreeGrammer.h">
@@ -33,6 +39,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="rmSingelGenerate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Del_useless.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

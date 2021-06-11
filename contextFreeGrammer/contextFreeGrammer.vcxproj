@@ -152,11 +152,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="contextFreeGrammer.c" />
+    <ClCompile Include="Del_useless.c" />
+    <ClCompile Include="Interface.c" />
     <ClCompile Include="removeE.c" />
     <ClCompile Include="rmiSingelGenerate.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="contextFreeGrammer.h" />
+    <ClInclude Include="Del_useless.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="removeE.h" />
     <ClInclude Include="rmSingelGenerate.h" />
   </ItemGroup>

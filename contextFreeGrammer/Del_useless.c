@@ -1,9 +1,9 @@
-#include"Data_structure.h"
-#include"Del_useless.h"
+#include "contextFreeGrammer.h"
+#include "Del_useless.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include"Interface.h"
 /*
 S¡úa|bA|B|ccB
 A¡úab|¦Å
@@ -156,6 +156,7 @@ Grammer * Useful_grammer(Grammer * g) {
 		Generate_flag[i] == true ? printf("1") : printf("0");
 	}*/
 	Grammer *Generate_g = Change(g, Generate_flag);
+
 	Flag = (bool *)malloc(sizeof(bool) * Generate_g->numN);
 	memset(Flag, 0, Generate_g->numN);
 	Flag[0] = true;
@@ -169,39 +170,50 @@ Grammer * Useful_grammer(Grammer * g) {
 	return New_g;
 }
 
-void test() {
+/*void test() {
 	Grammer * g = (Grammer *)malloc(sizeof(Grammer));
-	g->N = "SAB";
-	g->numN = 3;
-	g->T = "abc";
-	g->numT = 3;
+	g->N = "SABCD";
+	g->numN = 5;
+	g->T = "abcd";
+	g->numT = 4;
 	g->delta = (Node **)malloc(sizeof(Node *));
+
 	g->delta[0] = (Node *)malloc(sizeof(Node));
 	Node *tmp = g->delta[0];
 	tmp->str = "a";
 	tmp->next = (Node *)malloc(sizeof(Node));
 	tmp = tmp->next;
-	tmp->str = "b";
+	tmp->str = "bA";
 	tmp->next = (Node *)malloc(sizeof(Node));
 	tmp = tmp->next;
-	tmp->str = "ccA";
+	tmp->str = "B";
 	tmp->next = (Node *)malloc(sizeof(Node));
 	tmp = tmp->next;
-	tmp->str = "ccc";
+	tmp->str = "ccD";
 	tmp->next = NULL;
+
 	g->delta[1] = (Node *)malloc(sizeof(Node));
 	tmp = g->delta[1];
-	tmp->str = "ab";
+	tmp->str = "aba";
+	tmp->next = (Node *)malloc(sizeof(Node));
+	tmp = tmp->next;
+	tmp->str = "abaA";
 	tmp->next = NULL;
+
 	g->delta[2] = (Node *)malloc(sizeof(Node));
 	tmp = g->delta[2];
 	tmp->str = "aA";
 	tmp->next = NULL;
+
+	g->delta[3] = (Node *)malloc(sizeof(Node));
+	tmp = g->delta[3];
+	tmp->str = "ddC";
+	tmp->next = NULL;
+
+	g->delta[4] = (Node *)malloc(sizeof(Node));
+	tmp = g->delta[4];
+	tmp->str = "ddd";
+	tmp->next = NULL;
 	Useful_grammer(g);
 }
-
-/*
-S¡úa|bA|B|ccD
-A¡úabB|¦Å
-B¡úaA
 */

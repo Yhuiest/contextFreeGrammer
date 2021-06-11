@@ -5,6 +5,8 @@
 #include "contextFreeGrammer.h"
 #include "removeE.h"
 #include "rmSingelGenerate.h"
+#include "Interface.h"
+#include "Del_useless.h"
 
 void test()
 {
@@ -113,6 +115,13 @@ void test3()
 }
 int main()
 {
-	test3();
+	//test3();
+	Grammer * g =Input();
+	g = removeE(g);
+	Put_out(g);
+	g = Useful_grammer(g);
+	Put_out(g);
+	rmSingelGenerate(g);
+	Put_out(g);
 	return 0;
 }
