@@ -1,16 +1,11 @@
 #include "contextFreeGrammer.h"
-#include "Del_useless.h"
+#include"Del_useless.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include"Interface.h"
-/*
-S→a|bA|B|ccB
-A→ab|ε
-B→aA
-*/
 
-bool *JudgeA(bool *b, int numN,Node **n,char *ch,int times) {
+bool *JudgeA(bool *b, int numN, Node **n, char *ch, int times) {
 	int num = 0;//记录非生成符有几个生成式
 	bool temp = true;
 	bool flag = true;
@@ -25,13 +20,13 @@ bool *JudgeA(bool *b, int numN,Node **n,char *ch,int times) {
 					if (node->str[j] == ch[k]) {//有一个非终结符指向了另一个非终结符
 						flag = false;//flag=0说明有指向非终结符
 						temp = temp && b[k];//前者的可生成性由后者决定
-						if (k == times) {
-							if (node->next == NULL) {
-								node = node->next;
-								b[times] = false;
-								goto here;
-							}
-						}
+					//	if (k == times) {
+					//		if (node->next == NULL) {
+					//			node = node->next;
+					//			b[times] = false;
+					//			goto here;
+					//		}
+					//	}
 					}
 				}
 				j++;
@@ -40,12 +35,13 @@ bool *JudgeA(bool *b, int numN,Node **n,char *ch,int times) {
 				b[times] = true;
 				goto here;
 			}
-			node = node->next;//指向下一个生成式
+			node = node->next;
+			flag = true;//指向下一个生成式
 		}
-			b[times] = temp;
-	here:
+		b[times] = temp;
+		here:
 		times++;
-		return JudgeA(b, numN, n, ch,times);
+		return JudgeA(b, numN, n, ch, times);
 	}
 }
 bool *JudgeB(bool *b, int numN, Node **n, char *ch) {
@@ -55,9 +51,9 @@ bool *JudgeB(bool *b, int numN, Node **n, char *ch) {
 		while (node != NULL) {
 			int j = 0, k;
 			while (node->str[j] != '\0') {
-				for (k = 0; k<numN; k++) {
-					if (node->str[j] == ch[k] && b[k] !=true) {//有一个非终结符被前面的非终结符指向
-						
+				for (k = 0; k < numN; k++) {
+					if (node->str[j] == ch[k] && b[k] != true) {//有一个非终结符被前面的非终结符指向
+
 						b[k] = b[i];//后面的非终结符与前面的非终结符可达性一致
 						b[1];
 					}
@@ -90,7 +86,7 @@ Node*New_node(Node *n, bool*b, char*ch, int numN) {
 				}
 			}
 		}
-		i = 0; 
+		i = 0;
 		j = 0;
 		if (jump == 0) {
 			nMovePre->next = nMove;
@@ -151,10 +147,9 @@ Grammer * Useful_grammer(Grammer * g) {
 	//printf("flag[0]=%d\n", flag[0]);
 	ch = g->N;
 	bool *Generate_flag = (bool *)malloc(sizeof(bool) * g->numN);
-	Generate_flag = JudgeA(Flag, g->numN, g->delta, g->N,0);
-	/*for (int i = 0; i < g->numN; i++) {
-		Generate_flag[i] == true ? printf("1") : printf("0");
-	}*/
+	for (int i = 0; i < g->numN - 1; i++) {
+		Generate_flag = JudgeA(Generate_flag, g->numN, g->delta, g->N, 0);
+	}
 	Grammer *Generate_g = Change(g, Generate_flag);
 
 	Flag = (bool *)malloc(sizeof(bool) * Generate_g->numN);
@@ -163,14 +158,14 @@ Grammer * Useful_grammer(Grammer * g) {
 	ch = Generate_g->N;
 	bool *Access_flag = (bool *)malloc(sizeof(bool) * Generate_g->numN);
 	Access_flag = JudgeB(Flag, Generate_g->numN, Generate_g->delta, Generate_g->N);
-	/*for (int i = 0; i < Generate_g->numN; i++) {
-		Access_flag[i] == true ? printf("1") : printf("0");
-	}*/
+//	for (int i = 0; i < Generate_g->numN; i++) {
+//		Access_flag[i] == true ? printf("1") : printf("0");
+//	}
 	Grammer * New_g = Change(Generate_g, Access_flag);
 	return New_g;
 }
 
-/*void test() {
+void test5() {
 	Grammer * g = (Grammer *)malloc(sizeof(Grammer));
 	g->N = "SABCD";
 	g->numN = 5;
@@ -194,15 +189,15 @@ Grammer * Useful_grammer(Grammer * g) {
 
 	g->delta[1] = (Node *)malloc(sizeof(Node));
 	tmp = g->delta[1];
-	tmp->str = "aba";
-	tmp->next = (Node *)malloc(sizeof(Node));
-	tmp = tmp->next;
-	tmp->str = "abaA";
+	tmp->str = "abB";
 	tmp->next = NULL;
 
 	g->delta[2] = (Node *)malloc(sizeof(Node));
 	tmp = g->delta[2];
 	tmp->str = "aA";
+	tmp->next = (Node *)malloc(sizeof(Node));
+	tmp = tmp->next;
+	tmp->str = "a";
 	tmp->next = NULL;
 
 	g->delta[3] = (Node *)malloc(sizeof(Node));
@@ -214,6 +209,6 @@ Grammer * Useful_grammer(Grammer * g) {
 	tmp = g->delta[4];
 	tmp->str = "ddd";
 	tmp->next = NULL;
+
 	Useful_grammer(g);
 }
-*/

@@ -18,6 +18,8 @@ Grammer * Input() {
 	printf("**    请输入除起始符外剩余非终结符的个数                                       \n");
 	printf("**    ");
 	scanf("%d", &grammers->numN);
+	grammers->delta = (Node **)malloc(grammers->numN * sizeof(Node*));
+	grammers->N = (char *)malloc(grammers->numN * sizeof(char));
 	grammers->numN++;
 	printf("**    请依次输入剩余非终结符:                                                  \n");
 	printf("**    ");
@@ -32,6 +34,7 @@ Grammer * Input() {
 	printf("**    请输入终结符的个数:                                                      \n");
 	printf("**    ");
 	scanf("%d", &grammers->numT);
+	grammers->T = (char *)malloc(grammers->numT * sizeof(char));
 	printf("**    请依次输入终结符:                                                        \n");
 	printf("**    ");
 	for (i = 0; i < grammers->numT; ) {
@@ -53,7 +56,9 @@ Grammer * Input() {
 			p = (Node *)malloc(sizeof(Node));
 			p->str = (char *)malloc(sizeof(char));
 			p->next = NULL;
-			scanf("%s", p->str);
+			char tmp[10];
+			scanf("%s", tmp);
+			p->str = strdup(tmp);
 			if (r == NULL) {
 				grammers->delta[i] = p;
 				r = p;
@@ -81,7 +86,12 @@ void Put_out(Grammer *g) {
 
 	int i = 0;
 	while (i < g->numN) {
-		printf("%c ", g->N[i]);
+		if (i == 0) {
+			g->N[1] == 'S' ? printf("%c1 ", g->N[0]) : printf("%c ", g->N[0]);
+		}
+		else {
+			printf("%c ", g->N[i]);
+		}
 		i++;
 	}
 
@@ -97,7 +107,12 @@ void Put_out(Grammer *g) {
 	i = 0;
 	while (i < g->numN) {
 		printf("**    ");
-		printf("%c-->", g->N[i]);
+		if (i == 0) {
+			g->N[1] == 'S' ? printf("%c1-->", g->N[0]) : printf("%c-->", g->N[0]);
+		}
+		else {
+			printf("%c-->", g->N[i]);
+		}
 		Node *node = g->delta[i];
 
 		while (node != NULL) {

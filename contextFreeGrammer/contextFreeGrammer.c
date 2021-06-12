@@ -117,11 +117,12 @@ int main()
 {
 	//test3();
 	Grammer * g =Input();
+	Put_out(g);
+	rmSingelGenerate(g);
+	Put_out(g);
 	g = removeE(g);
 	Put_out(g);
 	g = Useful_grammer(g);
-	Put_out(g);
-	rmSingelGenerate(g);
 	Put_out(g);
 	return 0;
 }

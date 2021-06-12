@@ -1,2 +1,12 @@
-﻿  contextFreeGrammer.c
+﻿  Interface.c
+c:\users\lmzop\source\repos\contextfreegrammer\contextfreegrammer\interface.c(20): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1274): note: 参见“scanf”的声明
+c:\users\lmzop\source\repos\contextfreegrammer\contextfreegrammer\interface.c(36): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1274): note: 参见“scanf”的声明
+c:\users\lmzop\source\repos\contextfreegrammer\contextfreegrammer\interface.c(53): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1274): note: 参见“scanf”的声明
+c:\users\lmzop\source\repos\contextfreegrammer\contextfreegrammer\interface.c(60): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(1274): note: 参见“scanf”的声明
+c:\users\lmzop\source\repos\contextfreegrammer\contextfreegrammer\interface.c(61): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
+  d:\windows kits\10\include\10.0.17763.0\ucrt\string.h(536): note: 参见“strdup”的声明
   contextFreeGrammer.vcxproj -> C:\Users\lmzop\source\repos\contextFreeGrammer\x64\Debug\contextFreeGrammer.exe
